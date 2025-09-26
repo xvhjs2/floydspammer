@@ -60,7 +60,7 @@ def main():
             headers = {
                 "Content-Type": "application/json"
             }
-            spam = requests.post(webhookurl, data=json.dumps(payload), headers=headers)
+            spam = requests.post(webhookurl+"?wait=true", data=json.dumps(payload), headers=headers)
             if spam.status_code == 204:
                 print(f"{Fore.WHITE}{Style.BRIGHT}[+] sent message on {webhookurl} ")
             else:
@@ -75,7 +75,7 @@ def main():
             cls()
             print(Fore.RED + banner)
             gyat = input(Fore.WHITE + Style.BRIGHT + "[!] Delete webhook? " + Style.RESET_ALL)
-            if gyat == "y":
+            if gyat.lower() == "y":
                 requests.delete(webhookurl)
             else:
                 print(Fore.WHITE + Style.BRIGHT + "[-] ok niga im not deleting this webhook do whatever tf u want with it idfc")
