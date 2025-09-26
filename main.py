@@ -61,7 +61,7 @@ def main():
                 "Content-Type": "application/json"
             }
             spam = requests.post(webhookurl+"?wait=true", data=json.dumps(payload), headers=headers)
-            if spam.status_code == 204:
+            if spam.status_code in [200, 201, 204]:
                 print(f"{Fore.WHITE}{Style.BRIGHT}[+] sent message on {webhookurl}\n{spam.text} ")
             else:
                 print(f"{Fore.WHITE}{Style.BRIGHT}[-] failed to send message {spam.text}")
